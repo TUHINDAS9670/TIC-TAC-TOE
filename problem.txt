@@ -1,0 +1,25 @@
+ the problem is when i click on a new button then always it print o but i want to print x when previously print o 
+
+ The problem lies in how the state box is managed within the boardBox component. Each boardBox instance (button) manages its own state, which causes the state to reset or not update as expected across all buttons. To fix this, the state for the game board (box) should be lifted up to a parent component that manages the entire board's state.
+
+ Explanation:
+Parent Component (Board):
+
+The box state holds the state of all 9 boxes.
+The isXTurn state tracks whose turn it is.
+The handleClick function updates the state of the board when a box is clicked.
+Child Component (BoardBox):
+
+Receives the value of the box and the handleClick function as props.
+Renders the value of the box and calls handleClick when clicked.
+Prevent Overwriting:
+
+The handleClick function ensures that a box cannot be clicked if it already contains a value (X or O).
+How It Works:
+When you click a box, the handleClick function in Board updates the state.
+The BoardBox components re-render with the updated box values.
+Turns alternate between X and O as expected.
+
+
+todo->gren color of same row/col/diag after wining
+reduce 1 move after win
